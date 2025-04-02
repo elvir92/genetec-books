@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
-import { ThemeStoreService } from '@core/store/theme.store-service';
+import { ThemeStoreService } from '@core/store/theme.store.service';
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="container">
       <h1>About This Application</h1>
