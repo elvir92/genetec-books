@@ -1,13 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ThemeStoreService } from '@core/store/theme.store-service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <nav>
+    <nav [class.dark-mode]="isDarkMode$()">
       <div class="logo">BookHub</div>
       <ul class="nav-links">
         <li>
@@ -66,4 +67,9 @@ import { RouterModule } from '@angular/router';
     `,
   ],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  #themeStore = inject(ThemeStoreService);
+  isDarkMode$ = this.#themeStore.isDarkMode$;
+
+  constructor() {}
+}
