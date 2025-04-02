@@ -20,16 +20,7 @@ Then visit `http://localhost:4200` in your browser.
 
 ## Testing
 
-Run unit tests:
-```bash
-ng test
-```
-
-Run end-to-end tests:
-```bash
-ng e2e
-```
-Note: You'll need to configure your preferred e2e testing framework first.
+Not implemented !
 
 ## Additional Resources
 
