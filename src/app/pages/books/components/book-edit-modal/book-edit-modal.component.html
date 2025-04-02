@@ -1,0 +1,119 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Edit Book</h2>
+      <button type="button" class="close-btn" (click)="onClose()">
+        &times;
+      </button>
+    </div>
+
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          class="form-control"
+        />
+        @if ( bookForm.get('title')?.invalid && bookForm.get('title')?.touched )
+        {
+        <div class="error-msg">Title is required</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          id="author"
+          formControlName="author"
+          class="form-control"
+        />
+        @if ( bookForm.get('author')?.invalid && bookForm.get('author')?.touched
+        ) {
+        <div class="error-msg">Author is required</div>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input
+            type="number"
+            id="year"
+            formControlName="year"
+            class="form-control"
+          />
+          @if ( bookForm.get('year')?.invalid && bookForm.get('year')?.touched )
+          {
+          <div class="error-msg">Valid year is required</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input
+            type="text"
+            id="genre"
+            formControlName="genre"
+            class="form-control"
+          />
+          @if ( bookForm.get('genre')?.invalid && bookForm.get('genre')?.touched
+          ) {
+          <div class="error-msg">Genre is required</div>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="form-control"
+          rows="4"
+        ></textarea>
+        @if ( bookForm.get('description')?.invalid &&
+        bookForm.get('description')?.touched ) {
+        <div class="error-msg">Description is required</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="coverUrl">Cover Image URL</label>
+        <input
+          type="text"
+          id="coverUrl"
+          formControlName="coverUrl"
+          class="form-control"
+        />
+        @if ( bookForm.get('coverUrl')?.invalid &&
+        bookForm.get('coverUrl')?.touched ) {
+        <div class="error-msg">Cover URL is required</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Rating</label>
+        <app-star-rating
+          [value]="bookForm.get('rating')?.value || 0"
+          (ratingChange)="onRatingChange($event)"
+        ></app-star-rating>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="bookForm.invalid"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
